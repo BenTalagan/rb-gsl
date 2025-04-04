@@ -715,11 +715,14 @@ void Init_gsl_multimin(VALUE module)
   rb_define_singleton_method(mgsl_multimin, "test_size", rb_gsl_multimin_test_size, 2);
 
   cgsl_multimin_fdfminimizer = rb_define_class_under(mgsl_multimin, "FdfMinimizer", cGSL_Object);
+  rb_undef_alloc_func(cgsl_multimin_fdfminimizer);
   cgsl_multimin_fminimizer = rb_define_class_under(mgsl_multimin, "FMinimizer", cGSL_Object);
+  rb_undef_alloc_func(cgsl_multimin_fminimizer);
   define_const(cgsl_multimin_fdfminimizer, cgsl_multimin_fminimizer);
 
   cgsl_multimin_function = rb_define_class_under(mgsl_multimin, "Function",
                                                  cgsl_function);
+  rb_undef_alloc_func(cgsl_multimin_function);
   rb_define_singleton_method(cgsl_multimin_function, "alloc",
                              rb_gsl_multimin_function_new, -1);
   rb_define_method(cgsl_multimin_function, "eval", rb_gsl_multimin_function_eval, 1);
@@ -732,6 +735,7 @@ void Init_gsl_multimin(VALUE module)
 
   cgsl_multimin_function_fdf = rb_define_class_under(mgsl_multimin, "Function_fdf",
                                                      cGSL_Object);
+  rb_undef_alloc_func(cgsl_multimin_function_fdf);
   rb_define_singleton_method(cgsl_multimin_function_fdf, "alloc",
                              rb_gsl_multimin_function_fdf_new, -1);
 
@@ -775,4 +779,3 @@ void Init_gsl_multimin(VALUE module)
 #ifdef CHECK_MULTIMIN_FUNCTION_FDF
 #undef CHECK_MULTIMIN_FUNCTION_FDF
 #endif
-

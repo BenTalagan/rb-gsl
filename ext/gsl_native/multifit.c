@@ -1822,6 +1822,7 @@ void Init_gsl_multifit(VALUE module)
 
   cgsl_multifit_workspace = rb_define_class_under(mgsl_multifit, "Workspace",
                                                   cGSL_Object);
+  rb_undef_alloc_func(cgsl_multifit_workspace);
   rb_define_singleton_method(cgsl_multifit_workspace, "new",
                              rb_gsl_multifit_workspace_new, 2);
   rb_define_singleton_method(cgsl_multifit_workspace, "alloc",
@@ -1832,10 +1833,13 @@ void Init_gsl_multifit(VALUE module)
   rb_define_module_function(mgsl_multifit, "wlinear", rb_gsl_multifit_wlinear, -1);
 
   cgsl_multifit_solver = rb_define_class_under(mgsl_multifit, "Solver", cGSL_Object);
+  rb_undef_alloc_func(cgsl_multifit_solver);
   cgsl_multifit_fdfsolver = rb_define_class_under(mgsl_multifit, "FdfSolver",
                                                   cgsl_multifit_solver);
+  rb_undef_alloc_func(cgsl_multifit_fdfsolver);
   cgsl_multifit_function_fdf = rb_define_class_under(mgsl_multifit, "Function_fdf",
                                                      cGSL_Object);
+  rb_undef_alloc_func(cgsl_multifit_function_fdf);
 
   /*****/
 

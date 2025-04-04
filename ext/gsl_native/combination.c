@@ -241,8 +241,11 @@ void Init_gsl_combination(VALUE module)
 {
   VALUE cgsl_combination;
   cgsl_combination = rb_define_class_under(module, "Combination", cGSL_Object);
+  rb_undef_alloc_func(cgsl_combination);
   cgsl_combination_data = rb_define_class_under(cgsl_combination, "Data",
                                                 cgsl_permutation);
+  rb_undef_alloc_func(cgsl_combination_data);
+
   rb_define_singleton_method(cgsl_combination, "new", rb_gsl_combination_new, 2);
   rb_define_singleton_method(cgsl_combination, "alloc", rb_gsl_combination_new, 2);
   rb_define_singleton_method(cgsl_combination, "calloc", rb_gsl_combination_calloc, 2);
@@ -272,4 +275,3 @@ void Init_gsl_combination(VALUE module)
   rb_define_method(cgsl_combination, "equal?", rb_gsl_combination_equal, 1);
   rb_define_alias(cgsl_combination, "==", "equal?");
 }
-

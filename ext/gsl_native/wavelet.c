@@ -738,7 +738,9 @@ void Init_wavelet(VALUE module)
   VALUE cgsl_wavelet2d;
 
   cgsl_wavelet = rb_define_class_under(module, "Wavelet", cGSL_Object);
+  rb_undef_alloc_func(cgsl_wavelet);
   cgsl_wavelet2d = rb_define_class_under(module, "Wavelet2d", cgsl_wavelet);
+  rb_undef_alloc_func(cgsl_wavelet2d);
 
   rb_define_singleton_method(cgsl_wavelet, "alloc", rb_gsl_wavelet_new, 2);
 
@@ -746,6 +748,7 @@ void Init_wavelet(VALUE module)
   rb_define_method(cgsl_wavelet, "name", rb_gsl_wavelet_name, 0);
 
   cgsl_wavelet_workspace = rb_define_class_under(cgsl_wavelet, "Workspace", cGSL_Object);
+  rb_undef_alloc_func(cgsl_wavelet_workspace);
   rb_define_singleton_method(cgsl_wavelet_workspace, "alloc",
                              rb_gsl_wavelet_workspace_new, 1);
 
@@ -920,4 +923,3 @@ void Init_wavelet(VALUE module)
 
 #undef CHECK_WAVELET
 #undef CHECK_WORKSPACE
-

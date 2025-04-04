@@ -428,8 +428,11 @@ static VALUE rb_gsl_ntuple_project2(VALUE obj, VALUE hh, VALUE vvfn, VALUE vsfn)
 void Init_gsl_ntuple(VALUE module)
 {
   cgsl_ntuple = rb_define_class_under(module, "Ntuple", cGSL_Object);
+  rb_undef_alloc_func(cgsl_ntuple);
   cgsl_ntuple_select_fn = rb_define_class_under(cgsl_ntuple, "SelectFn", cGSL_Object);
+  rb_undef_alloc_func(cgsl_ntuple_select_fn);
   cgsl_ntuple_value_fn = rb_define_class_under(cgsl_ntuple, "ValueFn", cGSL_Object);
+  rb_undef_alloc_func(cgsl_ntuple_value_fn);
 
   rb_define_singleton_method(cgsl_ntuple, "create", rb_gsl_ntuple_new, -1);
   rb_define_singleton_method(cgsl_ntuple, "alloc", rb_gsl_ntuple_new, -1);

@@ -2221,23 +2221,39 @@ void Init_gsl_eigen(VALUE module)
 
   cgsl_eigen_values = rb_define_class_under(mgsl_eigen, "EigenValues",
                                             cgsl_vector);
+  rb_undef_alloc_func(cgsl_eigen_values);
+
   cgsl_eigen_vectors = rb_define_class_under(mgsl_eigen, "EigenVectors",
                                              cgsl_matrix);
+  rb_undef_alloc_func(cgsl_eigen_vectors);
+
   cgsl_eigen_vector = rb_define_class_under(mgsl_eigen, "EigenVector",
                                             cgsl_vector);
+  rb_undef_alloc_func(cgsl_eigen_vector);
+
   cgsl_eigen_herm_vectors = rb_define_class_under(mgsl_eigen, "ComplexEigenVectors",
                                                   cgsl_matrix_complex);
+  rb_undef_alloc_func(cgsl_eigen_herm_vectors);
+
   cgsl_eigen_vector_complex = rb_define_class_under(mgsl_eigen, "ComplexEigenVector",
                                                     cgsl_vector_complex);
+  rb_undef_alloc_func(cgsl_eigen_vector_complex);
+
   cgsl_eigen_symm_workspace = rb_define_class_under(mgsl_eigen_symm,
                                                     "Workspace", cGSL_Object);
+  rb_undef_alloc_func(cgsl_eigen_symm_workspace);
+
   cgsl_eigen_symmv_workspace = rb_define_class_under(mgsl_eigen_symmv,
                                                      "Workspace", cGSL_Object);
+  rb_undef_alloc_func(cgsl_eigen_symmv_workspace);
+
   cgsl_eigen_herm_workspace = rb_define_class_under(mgsl_eigen_herm,
                                                     "Workspace", cGSL_Object);
+  rb_undef_alloc_func(cgsl_eigen_herm_workspace);
 
   cgsl_eigen_hermv_workspace = rb_define_class_under(mgsl_eigen_hermv,
                                                      "Workspace", cGSL_Object);
+  rb_undef_alloc_func(cgsl_eigen_hermv_workspace);
 
   rb_define_singleton_method(cgsl_eigen_symm_workspace, "alloc",
                              rb_gsl_eigen_symm_alloc, 1);
@@ -2298,6 +2314,8 @@ void Init_gsl_eigen(VALUE module)
   mgsl_eigen_francis = rb_define_module_under(mgsl_eigen, "francis");
   cgsl_eigen_francis_workspace = rb_define_class_under(mgsl_eigen_francis,
                                                        "Workspace", cGSL_Object);
+  rb_undef_alloc_func(cgsl_eigen_francis_workspace);
+
   rb_define_singleton_method(cgsl_eigen_francis_workspace, "alloc",
                              rb_gsl_eigen_francis_alloc, 0);
 
@@ -2317,6 +2335,8 @@ void Init_gsl_eigen(VALUE module)
   mgsl_eigen_nonsymmv = rb_define_module_under(mgsl_eigen, "Nonsymmv");
   cgsl_eigen_nonsymm_workspace = rb_define_class_under(mgsl_eigen_nonsymm,
                                                        "Workspace", cGSL_Object);
+  rb_undef_alloc_func(cgsl_eigen_nonsymm_workspace);
+
   rb_define_singleton_method(cgsl_eigen_nonsymm_workspace, "alloc",
                              rb_gsl_eigen_nonsymm_alloc, 1);
   rb_define_singleton_method(mgsl_eigen_nonsymm, "alloc",
@@ -2334,6 +2354,8 @@ void Init_gsl_eigen(VALUE module)
 
   cgsl_eigen_nonsymmv_workspace = rb_define_class_under(mgsl_eigen_nonsymmv,
                                                         "Workspace", cGSL_Object);
+  rb_undef_alloc_func(cgsl_eigen_nonsymmv_workspace);
+
   rb_define_singleton_method(cgsl_eigen_nonsymmv_workspace, "alloc",
                              rb_gsl_eigen_nonsymmv_alloc, 1);
   rb_define_singleton_method(mgsl_eigen_nonsymmv, "alloc",
@@ -2357,8 +2379,11 @@ void Init_gsl_eigen(VALUE module)
   /** gensymm, gensymmv **/
   mgensymm = rb_define_module_under(mgsl_eigen, "Gensymm");
   cgensymm = rb_define_class_under(mgensymm, "Workspace", cGSL_Object);
+  rb_undef_alloc_func(cgensymm);
+
   mgensymmv = rb_define_module_under(mgsl_eigen, "Gensymmv");
   cgensymmv = rb_define_class_under(mgensymmv, "Workspace", cGSL_Object);
+  rb_undef_alloc_func(cgensymmv);
 
   rb_define_singleton_method(cgensymm, "alloc", rb_gsl_eigen_gensymm_alloc, 1);
   rb_define_singleton_method(cgensymmv, "alloc", rb_gsl_eigen_gensymmv_alloc, 1);
@@ -2385,8 +2410,11 @@ void Init_gsl_eigen(VALUE module)
   /** genherm, genhermv **/
   mgenherm = rb_define_module_under(mgsl_eigen, "Genherm");
   cgenherm = rb_define_class_under(mgenherm, "Workspace", cGSL_Object);
+  rb_undef_alloc_func(cgenherm);
+
   mgenhermv = rb_define_module_under(mgsl_eigen, "Genhermv");
   cgenhermv = rb_define_class_under(mgenhermv, "Workspace", cGSL_Object);
+  rb_undef_alloc_func(cgenhermv);
 
   rb_define_singleton_method(cgenherm, "alloc", rb_gsl_eigen_genherm_alloc, 1);
   rb_define_singleton_method(cgenhermv, "alloc", rb_gsl_eigen_genhermv_alloc, 1);
@@ -2414,7 +2442,10 @@ void Init_gsl_eigen(VALUE module)
   mgen = rb_define_module_under(mgsl_eigen, "Gen");
   mgenv = rb_define_module_under(mgsl_eigen, "Genv");
   cgenw = rb_define_class_under(mgen, "Workspace", cGSL_Object);
+  rb_undef_alloc_func(cgenw);
   cgenvw = rb_define_class_under(mgenv, "Workspace", cGSL_Object);
+  rb_undef_alloc_func(cgenvw);
+
   rb_define_singleton_method(mgen, "alloc", rb_gsl_eigen_gen_alloc, 1);
   rb_define_singleton_method(cgenw, "alloc", rb_gsl_eigen_gen_alloc, 1);
   rb_define_singleton_method(mgenv, "alloc", rb_gsl_eigen_genv_alloc, 1);
@@ -2448,4 +2479,3 @@ void Init_gsl_eigen(VALUE module)
   rb_define_module_function(module, "eigen_genv_sort",
                             rb_gsl_eigen_genv_sort, -1);
 }
-

@@ -260,6 +260,7 @@ void Init_sf_mathieu(VALUE module)
 
   mMathieu = rb_define_module_under(module, "Mathieu");
   cWorkspace = rb_define_class_under(mMathieu, "Workspace", cGSL_Object);
+  rb_undef_alloc_func(cWorkspace);
   rb_define_singleton_method(cWorkspace, "alloc", rb_gsl_sf_mathieu_alloc, 2);
 
   rb_define_module_function(module, "mathieu_a", rb_gsl_sf_mathieu_a, 2);

@@ -923,11 +923,14 @@ void Init_gsl_histogram2d(VALUE module)
   VALUE cgsl_histogram2d_pdf;
 
   cgsl_histogram2d = rb_define_class_under(module, "Histogram2d", cGSL_Object);
+  rb_undef_alloc_func(cgsl_histogram2d);
   cgsl_histogram2d_view = rb_define_class_under(cgsl_histogram2d, "View",
                                                 cgsl_histogram);
+  rb_undef_alloc_func(cgsl_histogram2d_view);
 
   cgsl_histogram2d_integ = rb_define_class_under(cgsl_histogram2d, "Integral",
                                                  cgsl_histogram2d);
+  rb_undef_alloc_func(cgsl_histogram2d_integ);
 
   /*  rb_define_singleton_method(cgsl_histogram2d, "new", rb_gsl_histogram2d_alloc, -1);*/
   rb_define_singleton_method(cgsl_histogram2d, "alloc", rb_gsl_histogram2d_alloc, -1);
@@ -1009,6 +1012,7 @@ void Init_gsl_histogram2d(VALUE module)
   rb_define_method(cgsl_histogram2d, "fscanf",  rb_gsl_histogram2d_fscanf, 1);
 
   cgsl_histogram2d_pdf = rb_define_class_under(cgsl_histogram2d, "Pdf", cGSL_Object);
+  rb_undef_alloc_func(cgsl_histogram2d_pdf);
 
   /*  rb_define_singleton_method(cgsl_histogram2d_pdf, "new",
       rb_gsl_histogram2d_pdf_alloc, 2);*/

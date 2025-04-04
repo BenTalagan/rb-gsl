@@ -3943,30 +3943,44 @@ void Init_gsl_linalg(VALUE module)
   mgsl_linalg = rb_define_module_under(module, "Linalg");
   mgsl_linalg_LU = rb_define_module_under(mgsl_linalg, "LU");
   cgsl_matrix_LU = rb_define_class_under(mgsl_linalg_LU, "LUMatrix", cgsl_matrix);
+  rb_undef_alloc_func(cgsl_matrix_LU);
   mgsl_linalg_QR = rb_define_module_under(mgsl_linalg, "QR");
   mgsl_linalg_QRPT = rb_define_module_under(mgsl_linalg, "QRPT");
   cgsl_matrix_QR = rb_define_class_under(mgsl_linalg, "QRMatrix", cgsl_matrix);
+  rb_undef_alloc_func(cgsl_matrix_QR);
   cgsl_matrix_QRPT = rb_define_class_under(mgsl_linalg, "QRPTMatrix", cgsl_matrix);
+  rb_undef_alloc_func(cgsl_matrix_QRPT);
   cgsl_vector_tau = rb_define_class_under(mgsl_linalg, "TauVector", cgsl_vector);
+  rb_undef_alloc_func(cgsl_vector_tau);
   cgsl_matrix_Q = rb_define_class_under(mgsl_linalg, "QMatrix", cgsl_matrix);
+  rb_undef_alloc_func(cgsl_matrix_Q);
   cgsl_matrix_R = rb_define_class_under(mgsl_linalg, "RMatrix", cgsl_matrix);
+  rb_undef_alloc_func(cgsl_matrix_R);
 
   mgsl_linalg_LQ = rb_define_module_under(mgsl_linalg, "LQ");
   mgsl_linalg_PTLQ = rb_define_module_under(mgsl_linalg, "PTLQ");
   cgsl_matrix_LQ = rb_define_class_under(mgsl_linalg, "LQMatrix", cgsl_matrix);
+  rb_undef_alloc_func(cgsl_matrix_LQ);
   cgsl_matrix_PTLQ = rb_define_class_under(mgsl_linalg, "PTLQMatrix", cgsl_matrix);
+  rb_undef_alloc_func(cgsl_matrix_PTLQ);
   cgsl_matrix_L = rb_define_class_under(mgsl_linalg, "LMatrix", cgsl_matrix);
+  rb_undef_alloc_func(cgsl_matrix_L);
 
   /*****/
   mgsl_linalg_SV = rb_define_module_under(mgsl_linalg, "SV");
   cgsl_matrix_SV = rb_define_class_under(mgsl_linalg_SV, "SVMatrix", cgsl_matrix);
+  rb_undef_alloc_func(cgsl_matrix_SV);
   cgsl_matrix_U = rb_define_class_under(mgsl_linalg_SV, "UMatrix", cgsl_matrix);
+  rb_undef_alloc_func(cgsl_matrix_U);
   cgsl_matrix_V = rb_define_class_under(mgsl_linalg_SV, "VMatrix", cgsl_matrix);
+  rb_undef_alloc_func(cgsl_matrix_V);
   cgsl_vector_S = rb_define_class_under(mgsl_linalg_SV, "SingularValues", cgsl_vector);
+  rb_undef_alloc_func(cgsl_vector_S);
 
   /*****/
   mgsl_linalg_cholesky = rb_define_module_under(mgsl_linalg, "Cholesky");
   cgsl_matrix_C = rb_define_class_under(mgsl_linalg_cholesky, "CholeskyMatrix", cgsl_matrix);
+  rb_undef_alloc_func(cgsl_matrix_C);
   mgsl_linalg_symmtd = rb_define_module_under(mgsl_linalg, "Symmtd");
 
   mgsl_linalg_hermtd = rb_define_module_under(mgsl_linalg, "Hermtd");

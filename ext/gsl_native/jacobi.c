@@ -671,6 +671,7 @@ void Init_jacobi(VALUE module)
   mjac = rb_define_module("Jac");
   jac_define_const(mjac);
   cjacq = rb_define_class_under(mjac, "Quadrature", cGSL_Object);
+  rb_undef_alloc_func(cjacq);
 
   rb_define_module_function(mjac, "jacobi_P0_e", rb_jac_jacobi_P0_e, 3);
   rb_define_module_function(mjac, "jacobi_P0", rb_jac_jacobi_P0, 3);
@@ -730,4 +731,3 @@ void Init_jacobi(VALUE module)
 }
 
 #endif
-

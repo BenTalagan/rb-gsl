@@ -238,7 +238,9 @@ void Init_cqp(VALUE module)
 
   mCQP = rb_define_module_under(module, "CQP");
   cMinimizer = rb_define_class_under(mCQP, "Minimizer", cGSL_Object);
+  rb_undef_alloc_func(cMinimizer);
   cData = rb_define_class_under(mCQP, "Data", cGSL_Object);
+  rb_undef_alloc_func(cData);
 
   rb_define_singleton_method(cMinimizer, "alloc", rb_cqpminimizer_alloc, 4);
 
@@ -280,4 +282,3 @@ void Init_cqp(VALUE module)
 }
 
 #endif
-

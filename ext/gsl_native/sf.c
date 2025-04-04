@@ -1401,6 +1401,7 @@ void Init_gsl_sf(VALUE module)
 
   cgsl_sf_result = rb_define_class_under(mgsl_sf, "Result",
                                          cGSL_Object);
+  rb_undef_alloc_func(cgsl_sf_result);
   rb_define_singleton_method(cgsl_sf_result, "new", rb_gsl_sf_result_new,
                              0);
   rb_define_method(cgsl_sf_result, "print", rb_gsl_sf_result_print, 0);
@@ -1412,6 +1413,7 @@ void Init_gsl_sf(VALUE module)
 
   cgsl_sf_result_e10 = rb_define_class_under(mgsl_sf, "Result_e10",
                                              cGSL_Object);
+  rb_undef_alloc_func(cgsl_sf_result_e10);
   rb_define_singleton_method(cgsl_sf_result_e10, "new",
                              rb_gsl_sf_result_e10_new, 0);
   rb_define_method(cgsl_sf_result_e10, "val", rb_gsl_sf_result_e10_val, 0);

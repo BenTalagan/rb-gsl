@@ -850,6 +850,7 @@ void Init_gsl_odeiv(VALUE module)
   rb_define_const(mgsl_odeiv, "HADJ_NIL", INT2FIX(GSL_ODEIV_HADJ_NIL));
   cgsl_odeiv_step = rb_define_class_under(mgsl_odeiv, "Step",
                                           cGSL_Object);
+  rb_undef_alloc_func(cgsl_odeiv_step);
   rb_define_singleton_method(cgsl_odeiv_step, "alloc", rb_gsl_odeiv_step_new, -1);
 
   /*****/
@@ -878,6 +879,7 @@ void Init_gsl_odeiv(VALUE module)
 
   cgsl_odeiv_control = rb_define_class_under(mgsl_odeiv, "Control",
                                              cGSL_Object);
+  rb_undef_alloc_func(cgsl_odeiv_control);
   rb_define_singleton_method(cgsl_odeiv_control, "alloc", rb_gsl_odeiv_control_standard_new, 4);
   rb_define_singleton_method(cgsl_odeiv_control, "standard_alloc", rb_gsl_odeiv_control_standard_new, 4);
   rb_define_singleton_method(cgsl_odeiv_control, "y_new", rb_gsl_odeiv_control_y_new, 2);
@@ -891,6 +893,7 @@ void Init_gsl_odeiv(VALUE module)
   /****/
   cgsl_odeiv_evolve = rb_define_class_under(mgsl_odeiv, "Evolve",
                                             cGSL_Object);
+  rb_undef_alloc_func(cgsl_odeiv_evolve);
   rb_define_singleton_method(cgsl_odeiv_evolve, "alloc", rb_gsl_odeiv_evolve_new, 1);
 
   rb_define_method(cgsl_odeiv_evolve, "reset", rb_gsl_odeiv_evolve_reset, 0);
@@ -905,6 +908,7 @@ void Init_gsl_odeiv(VALUE module)
 
   cgsl_odeiv_system = rb_define_class_under(mgsl_odeiv, "System",
                                             cGSL_Object);
+  rb_undef_alloc_func(cgsl_odeiv_system);
   rb_define_singleton_method(cgsl_odeiv_system, "alloc", rb_gsl_odeiv_system_new, -1);
   rb_define_method(cgsl_odeiv_system, "set", rb_gsl_odeiv_system_set, -1);
   rb_define_method(cgsl_odeiv_system, "set_params",
@@ -922,6 +926,7 @@ void Init_gsl_odeiv(VALUE module)
 
   /*****/
   cgsl_odeiv_solver = rb_define_class_under(mgsl_odeiv, "Solver", cGSL_Object);
+  rb_undef_alloc_func(cgsl_odeiv_solver);
   rb_define_singleton_method(cgsl_odeiv_solver, "alloc", rb_gsl_odeiv_solver_new, -1);
   rb_define_method(cgsl_odeiv_solver, "step", rb_gsl_odeiv_solver_step, 0);
   rb_define_method(cgsl_odeiv_solver, "control", rb_gsl_odeiv_solver_control, 0);

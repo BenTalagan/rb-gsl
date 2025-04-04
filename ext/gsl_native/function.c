@@ -501,7 +501,9 @@ void Init_gsl_function(VALUE module)
   RBGSL_ID_arity = rb_intern("arity");
 
   cgsl_function = rb_define_class_under(module, "Function", cGSL_Object);
+  rb_undef_alloc_func(cgsl_function);
   cgsl_function_fdf = rb_define_class_under(module, "Function_fdf", cGSL_Object);
+  rb_undef_alloc_func(cgsl_function_fdf);
   // This Fdf class seems superfluous.  Should probably be deleted?
   rb_define_class_under(cgsl_function_fdf, "Fdf", cgsl_function_fdf);
 

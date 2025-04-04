@@ -184,6 +184,7 @@ void Init_gsl_min(VALUE module)
   mgsl_min = rb_define_module_under(module, "Min");
 
   cgsl_fminimizer = rb_define_class_under(mgsl_min, "FMinimizer", cGSL_Object);
+  rb_undef_alloc_func(cgsl_fminimizer);
 
   rb_define_const(cgsl_fminimizer, "GOLDENSECTION",
                   INT2FIX(GSL_MIN_FMINIMIZER_GOLDENSECTION));

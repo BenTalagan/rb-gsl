@@ -1852,12 +1852,16 @@ void Init_gsl_histogram(VALUE module)
   VALUE cgsl_histogram_pdf;
 
   cgsl_histogram = rb_define_class_under(module, "Histogram", cGSL_Object);
+  rb_undef_alloc_func(cgsl_histogram);
   cgsl_histogram_range = rb_define_class_under(cgsl_histogram, "Range",
                                                cgsl_vector_view_ro);
+  rb_undef_alloc_func(cgsl_histogram_range);
   cgsl_histogram_bin = rb_define_class_under(cgsl_histogram, "Bin",
                                              cgsl_vector_view);
+  rb_undef_alloc_func(cgsl_histogram_bin);
   cgsl_histogram_integ = rb_define_class_under(cgsl_histogram, "Integral",
                                                cgsl_histogram);
+  rb_undef_alloc_func(cgsl_histogram_integ);
 
   rb_define_singleton_method(cgsl_histogram, "alloc", rb_gsl_histogram_alloc, -1);
   /*  rb_define_singleton_method(cgsl_histogram, "new", rb_gsl_histogram_alloc, -1);*/
@@ -1957,6 +1961,8 @@ void Init_gsl_histogram(VALUE module)
   rb_define_method(cgsl_histogram, "print", rb_gsl_histogram_print, 0);
 
   cgsl_histogram_pdf = rb_define_class_under(cgsl_histogram, "Pdf", cGSL_Object);
+  rb_undef_alloc_func(cgsl_histogram_pdf);
+
   rb_define_singleton_method(cgsl_histogram_pdf, "alloc",
                              rb_gsl_histogram_pdf_alloc, 1);
   /*  rb_define_singleton_method(cgsl_histogram_pdf, "new",

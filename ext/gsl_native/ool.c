@@ -803,11 +803,17 @@ void Init_ool(VALUE module)
   mOOL = rb_define_module("OOL");
   mConmin = rb_define_module_under(mOOL, "Conmin");
   cool_conmin_function = rb_define_class_under(mConmin, "Function", cgsl_function);
+  rb_undef_alloc_func(cool_conmin_function);
   cool_conmin_constraint = rb_define_class_under(mConmin, "Constraint", cGSL_Object);
+  rb_undef_alloc_func(cool_conmin_constraint);
   cool_conmin_minimizer = rb_define_class_under(mConmin, "Minimizer", cGSL_Object);
+  rb_undef_alloc_func(cool_conmin_minimizer);
   cool_conmin_pgrad = rb_define_class_under(cool_conmin_minimizer, "Pgrad", cGSL_Object);
+  rb_undef_alloc_func(cool_conmin_pgrad);
   cool_conmin_spg = rb_define_class_under(cool_conmin_minimizer, "Spg", cGSL_Object);
+  rb_undef_alloc_func(cool_conmin_spg);
   cool_conmin_gencan = rb_define_class_under(cool_conmin_minimizer, "Gencan", cGSL_Object);
+  rb_undef_alloc_func(cool_conmin_gencan);
 
   def_const(mOOL);
 
@@ -864,10 +870,13 @@ void Init_ool(VALUE module)
 
   cool_conmin_pgrad_parameters = rb_define_class_under(cool_conmin_pgrad, "Parameters",
                                                        rb_cArray);
+  rb_undef_alloc_func(cool_conmin_pgrad_parameters);
   cool_conmin_spg_parameters = rb_define_class_under(cool_conmin_spg, "Parameters",
                                                      rb_cArray);
+  rb_undef_alloc_func(cool_conmin_spg_parameters);
   cool_conmin_gencan_parameters = rb_define_class_under(cool_conmin_gencan, "Parameters",
                                                         rb_cArray);
+  rb_undef_alloc_func(cool_conmin_gencan_parameters);
   rb_define_singleton_method(cool_conmin_pgrad, "parameters_default",
                              rb_ool_conmin_pgrad_parameters_default, 0);
   rb_define_singleton_method(cool_conmin_spg, "parameters_default",

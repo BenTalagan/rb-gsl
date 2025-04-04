@@ -253,7 +253,9 @@ void Init_gsl_interp2d(VALUE module)
   VALUE cgsl_interp2d;
 
   cgsl_interp2d = rb_define_class_under(module, "Interp2d", cGSL_Object);
+  rb_undef_alloc_func(cgsl_interp2d);
   cgsl_interp2d_accel = rb_define_class_under(cgsl_interp2d, "Accel", cGSL_Object);
+  rb_undef_alloc_func(cgsl_interp2d_accel);
 
   rb_define_singleton_method(cgsl_interp2d, "alloc", rb_gsl_interp2d_alloc, -1);
   rb_gsl_interp2d_define_const(cgsl_interp2d);

@@ -371,6 +371,7 @@ void Init_gsl_spline(VALUE module)
   VALUE cgsl_spline;
 
   cgsl_spline = rb_define_class_under(module, "Spline", cGSL_Object);
+  rb_undef_alloc_func(cgsl_spline);
 
   rb_define_singleton_method(cgsl_spline, "alloc", rb_gsl_spline_new, -1);
 

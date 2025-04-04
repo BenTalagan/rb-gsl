@@ -990,6 +990,7 @@ void Init_gsl_fft(VALUE module)
   // GSL::FFT::Real::Wavetable
   // GSL::FFT::HalfComplex::Wavetable
   cgsl_fft_wavetable = rb_define_class_under(mgsl_fft, "Wavetable", cGSL_Object);
+  rb_undef_alloc_func(cgsl_fft_wavetable);
   // No alloc
   // TODO Make GSL::FFT::Wavetable#initialize private?
   rb_define_method(cgsl_fft_wavetable, "n",
@@ -1002,12 +1003,15 @@ void Init_gsl_fft(VALUE module)
   // class GSL::FFT::ComplexWavetable < GSL::FFT::Wavetable
   cgsl_fft_complex_wavetable = rb_define_class_under(mgsl_fft, "ComplexWavetable",
                                                      cgsl_fft_wavetable);
+  rb_undef_alloc_func(cgsl_fft_complex_wavetable);
   rb_define_singleton_method(cgsl_fft_complex_wavetable, "alloc",
                              rb_gsl_fft_complex_wavetable_new, 1);
 
   // class GSL::FFT::ComplexWorkspace < GSL::Object
   cgsl_fft_complex_workspace = rb_define_class_under(mgsl_fft, "ComplexWorkspace",
                                                      cGSL_Object);
+  rb_undef_alloc_func(cgsl_fft_complex_workspace);
+
   rb_define_singleton_method(cgsl_fft_complex_workspace, "alloc",
                              rb_gsl_fft_complex_workspace_new, 1);
 
@@ -1060,12 +1064,16 @@ void Init_gsl_fft(VALUE module)
   // class GSL::FFT::RealWavetable < GSL::FFT::Wavetable
   cgsl_fft_real_wavetable = rb_define_class_under(mgsl_fft, "RealWavetable",
                                                   cgsl_fft_wavetable);
+  rb_undef_alloc_func(cgsl_fft_real_wavetable);
+
   rb_define_singleton_method(cgsl_fft_real_wavetable, "alloc",
                              rb_gsl_fft_real_wavetable_new, 1);
 
   // class GSL::FFT::HalfComplexWavetable < GSL::FFT::Wavetable
   cgsl_fft_halfcomplex_wavetable = rb_define_class_under(mgsl_fft,
                                                          "HalfComplexWavetable", cgsl_fft_wavetable);
+  rb_undef_alloc_func(cgsl_fft_halfcomplex_wavetable);
+
   rb_define_singleton_method(cgsl_fft_halfcomplex_wavetable, "alloc",
                              rb_gsl_fft_halfcomplex_wavetable_new, 1);
 
@@ -1074,6 +1082,8 @@ void Init_gsl_fft(VALUE module)
   // class GSL::FFT::RealWorkspace < GSL::Object
   cgsl_fft_real_workspace = rb_define_class_under(mgsl_fft, "RealWorkspace",
                                                   cGSL_Object);
+  rb_undef_alloc_func(cgsl_fft_real_workspace);
+
   rb_define_singleton_method(cgsl_fft_real_workspace, "alloc",
                              rb_gsl_fft_real_workspace_new, 1);
 

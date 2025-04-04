@@ -876,6 +876,7 @@ void Init_gsl_multiroot(VALUE module)
   /* multiroot_function */
   cgsl_multiroot_function = rb_define_class_under(mgsl_multiroot, "Function",
                                                   cgsl_function);
+  rb_undef_alloc_func(cgsl_multiroot_function);
   rb_define_singleton_method(cgsl_multiroot_function, "alloc",
                              rb_gsl_multiroot_function_new, -1);
   rb_define_method(cgsl_multiroot_function, "eval", rb_gsl_multiroot_function_eval, 1);
@@ -889,6 +890,7 @@ void Init_gsl_multiroot(VALUE module)
   /* multiroot_function_fdf */
   cgsl_multiroot_function_fdf = rb_define_class_under(mgsl_multiroot, "Function_fdf",
                                                       cgsl_multiroot_function);
+  rb_undef_alloc_func(cgsl_multiroot_function_fdf);
   rb_define_singleton_method(cgsl_multiroot_function_fdf, "alloc",
                              rb_gsl_multiroot_function_fdf_new, -1);
   rb_define_method(cgsl_multiroot_function_fdf, "set", rb_gsl_multiroot_function_fdf_set, -1);
@@ -900,8 +902,9 @@ void Init_gsl_multiroot(VALUE module)
 
   /* solver */
   cgsl_multiroot_fsolver = rb_define_class_under(mgsl_multiroot, "FSolver", cGSL_Object);
+  rb_undef_alloc_func(cgsl_multiroot_fsolver);
   cgsl_multiroot_fdfsolver = rb_define_class_under(mgsl_multiroot, "FdfSolver", cgsl_multiroot_fsolver);
-
+  rb_undef_alloc_func(cgsl_multiroot_fdfsolver);
   rb_define_singleton_method(cgsl_multiroot_fsolver, "alloc",
                              rb_gsl_multiroot_fsolver_new, 2);
   rb_define_singleton_method(cgsl_multiroot_fdfsolver, "alloc",

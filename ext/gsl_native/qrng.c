@@ -138,6 +138,7 @@ void Init_gsl_qrng(VALUE module)
 {
   VALUE cgsl_qrng;
   cgsl_qrng = rb_define_class_under(module, "QRng", cGSL_Object);
+  rb_undef_alloc_func(cgsl_qrng);
 
   rb_define_singleton_method(cgsl_qrng, "new", rb_gsl_qrng_new, 2);
   rb_define_singleton_method(cgsl_qrng, "alloc", rb_gsl_qrng_new, 2);

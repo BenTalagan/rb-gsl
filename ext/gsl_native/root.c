@@ -361,6 +361,7 @@ void Init_gsl_root(VALUE module)
   mgsl_root = rb_define_module_under(module, "Root");
 
   cgsl_fsolver = rb_define_class_under(mgsl_root, "FSolver", cGSL_Object);
+  rb_undef_alloc_func(cgsl_fsolver);
   rb_define_singleton_method(cgsl_fsolver, "alloc", rb_gsl_fsolver_new, 1);
 
   rb_define_method(cgsl_fsolver, "set", rb_gsl_fsolver_set, 3);
@@ -380,6 +381,7 @@ void Init_gsl_root(VALUE module)
                              rb_gsl_root_test_residual, 2);
 
   cgsl_fdfsolver = rb_define_class_under(mgsl_root, "FdfSolver", cGSL_Object);
+  rb_undef_alloc_func(cgsl_fdfsolver);
   rb_define_singleton_method(cgsl_fdfsolver, "alloc", rb_gsl_fdfsolver_new, 1);
 
   rb_define_method(cgsl_fdfsolver, "set", rb_gsl_fdfsolver_set, 2);

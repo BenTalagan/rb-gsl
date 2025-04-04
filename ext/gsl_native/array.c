@@ -474,69 +474,115 @@ void Init_gsl_array(VALUE module)
 {
   cgsl_block = rb_define_class_under(module, "Block",
                                      cGSL_Object);
+  rb_undef_alloc_func(cgsl_block);
   cgsl_block_int = rb_define_class_under(cgsl_block, "Int",
                                          cGSL_Object);
+  rb_undef_alloc_func(cgsl_block_int);
   cgsl_block_uchar = rb_define_class_under(cgsl_block, "Byte",
                                            cGSL_Object);
+  rb_undef_alloc_func(cgsl_block_uchar);
 
   cgsl_block_complex = rb_define_class_under(cgsl_block, "Complex", cgsl_block);
+  rb_undef_alloc_func(cgsl_block_complex);
+
   cgsl_vector = rb_define_class_under(module, "Vector",
                                       cGSL_Object);
+  rb_undef_alloc_func(cgsl_vector);
+
   cgsl_vector_col = rb_define_class_under(cgsl_vector, "Col",
                                           cgsl_vector);
+  rb_undef_alloc_func(cgsl_vector_col);
+
   cgsl_vector_complex = rb_define_class_under(cgsl_vector, "Complex",
                                               cGSL_Object);
+  rb_undef_alloc_func(cgsl_vector_complex);
+
   cgsl_vector_complex_col = rb_define_class_under(cgsl_vector_complex, "Col",
                                                   cgsl_vector_complex);
+  rb_undef_alloc_func(cgsl_vector_complex_col);
+
   cgsl_matrix = rb_define_class_under(module, "Matrix", cGSL_Object);
+  rb_undef_alloc_func(cgsl_matrix);
+
   cgsl_matrix_complex = rb_define_class_under(cgsl_matrix, "Complex", cGSL_Object);
+  rb_undef_alloc_func(cgsl_matrix_complex);
 
   cgsl_vector_view = rb_define_class_under(cgsl_vector, "View", cgsl_vector);
+  rb_undef_alloc_func(cgsl_vector_view);
+
   cgsl_vector_col_view = rb_define_class_under(cgsl_vector_col, "View", cgsl_vector_col);
+  rb_undef_alloc_func(cgsl_vector_col_view);
 
   cgsl_vector_complex_view = rb_define_class_under(cgsl_vector_complex, "View",
                                                    cgsl_vector_complex);
+  rb_undef_alloc_func(cgsl_vector_complex_view);
   cgsl_vector_complex_col_view = rb_define_class_under(cgsl_vector_complex_col, "View",
                                                        cgsl_vector_complex_col);
+  rb_undef_alloc_func(cgsl_vector_complex_col_view);
 
   cgsl_vector_int = rb_define_class_under(cgsl_vector, "Int", cGSL_Object);
+  rb_undef_alloc_func(cgsl_vector_int);
   cgsl_vector_int_col = rb_define_class_under(cgsl_vector_int, "Col", cgsl_vector_int);
+  rb_undef_alloc_func(cgsl_vector_int_col);
   cgsl_vector_int_view = rb_define_class_under(cgsl_vector_int, "View", cgsl_vector_int);
+  rb_undef_alloc_func(cgsl_vector_int_view);
   cgsl_vector_int_col_view = rb_define_class_under(cgsl_vector_int_col, "View", cgsl_vector_int_col);
-
+  rb_undef_alloc_func(cgsl_vector_int_col_view);
 
   /*****/
 
   cgsl_matrix_view = rb_define_class_under(cgsl_matrix, "View",
                                            cgsl_matrix);
+  rb_undef_alloc_func(cgsl_matrix_view);
+
   cgsl_matrix_complex_view = rb_define_class_under(cgsl_matrix_complex, "View",
                                                    cgsl_matrix_complex);
+  rb_undef_alloc_func(cgsl_matrix_complex_view);
   cgsl_permutation = rb_define_class_under(module, "Permutation", cGSL_Object);
+  rb_undef_alloc_func(cgsl_permutation);
+
   cgsl_index = rb_define_class_under(module, "Index", cgsl_permutation);
+  rb_undef_alloc_func(cgsl_index);
 
   cgsl_vector_view_ro = rb_define_class_under(cgsl_vector_view, "ReadOnly",
                                               cgsl_vector_view);
+  rb_undef_alloc_func(cgsl_vector_view_ro);
+
   cgsl_vector_col_view_ro = rb_define_class_under(cgsl_vector_col_view, "ReadOnly",
                                                   cgsl_vector_col_view);
+  rb_undef_alloc_func(cgsl_vector_col_view_ro);
+
   cgsl_vector_int_view_ro = rb_define_class_under(cgsl_vector_int_view, "ReadOnly",
                                                   cgsl_vector_int_view);
+  rb_undef_alloc_func(cgsl_vector_int_view_ro);
+
   cgsl_vector_int_col_view_ro = rb_define_class_under(cgsl_vector_int_col_view, "ReadOnly",
                                                       cgsl_vector_int_col_view);
+  rb_undef_alloc_func(cgsl_vector_int_col_view_ro);
+
   cgsl_matrix_view_ro = rb_define_class_under(cgsl_matrix_view, "ReadOnly",
                                               cgsl_matrix_view);
+  rb_undef_alloc_func(cgsl_matrix_view_ro);
 
   cgsl_vector_complex_view_ro = rb_define_class_under(cgsl_vector_complex_view,
                                                       "ReadOnly",
                                                       cgsl_vector_complex_view);
+  rb_undef_alloc_func(cgsl_vector_complex_view_ro);
+
   cgsl_matrix_complex_view_ro = rb_define_class_under(cgsl_matrix_complex_view,
                                                       "ReadOnly",
                                                       cgsl_matrix_complex_view);
+  rb_undef_alloc_func(cgsl_matrix_complex_view_ro);
 
   /*****/
   cgsl_matrix_int = rb_define_class_under(cgsl_matrix, "Int", cGSL_Object);
+  rb_undef_alloc_func(cgsl_matrix_int);
   cgsl_matrix_int_view = rb_define_class_under(cgsl_matrix_int, "View", cgsl_matrix_int);
+  rb_undef_alloc_func(cgsl_matrix_int_view);
   cgsl_matrix_int_view_ro = rb_define_class_under(cgsl_matrix_int_view, "ReadOnly",
                                                   cgsl_matrix_int_view);
+  rb_undef_alloc_func(cgsl_matrix_int_view_ro);
+
   /*****/
   Init_gsl_block_init(module);
   Init_gsl_block_int_init(module);
