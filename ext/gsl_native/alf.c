@@ -189,6 +189,7 @@ void Init_alf(VALUE module)
   VALUE mALF;
   mALF = rb_define_module_under(module, "ALF");
   cWspace = rb_define_class_under(mALF, "Workspace", cGSL_Object);
+  rb_undef_alloc_func(cWspace);
   rb_define_singleton_method(cWspace, "alloc", rb_alf_alloc, 1);
   rb_define_singleton_method(mALF, "alloc", rb_alf_alloc, 1);
   rb_define_module_function(module, "alf_alloc", rb_alf_alloc, 1);

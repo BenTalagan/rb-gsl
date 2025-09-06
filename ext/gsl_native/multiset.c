@@ -182,6 +182,7 @@ VALUE rb_gsl_multiset_data2(VALUE mm, VALUE i)
 void Init_multiset(VALUE module)
 {
   cMultiset = rb_define_class_under(module, "Multiset", cGSL_Object);
+  rb_undef_alloc_func(cMultiset);
   rb_define_singleton_method(cMultiset, "alloc", rb_gsl_multiset_alloc, 2);
   rb_define_singleton_method(cMultiset, "calloc", rb_gsl_multiset_calloc, 2);
   rb_define_singleton_method(cMultiset, "memcpy", rb_gsl_multiset_memcpy, 2);
@@ -207,4 +208,3 @@ void Init_multiset(VALUE module)
   rb_define_method(cMultiset, "fprintf", rb_gsl_multiset_fprintf, 2);
   rb_define_method(cMultiset, "fscanf", rb_gsl_multiset_fscanf, 1);
 }
-

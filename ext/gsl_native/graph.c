@@ -1303,6 +1303,7 @@ void Init_gsl_graph(VALUE module)
   VALUE cgsl_graph;
 
   cgsl_graph = rb_define_class_under(module, "Graph", cGSL_Object);
+  rb_undef_alloc_func(cgsl_graph);
 
   rb_define_singleton_method(cgsl_graph, "new", rb_gsl_graph_new, -1);
   rb_define_singleton_method(cgsl_graph, "alloc", rb_gsl_graph_new, -1);

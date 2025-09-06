@@ -465,21 +465,21 @@ static VALUE rb_gsl_rng_name(VALUE obj)
   return rb_str_new2(gsl_rng_name(r));
 }
 
-static VALUE rb_gsl_rng_max(VALUE obj, VALUE s)
+static VALUE rb_gsl_rng_max(VALUE obj)
 {
   gsl_rng *r = NULL;
   Data_Get_Struct(obj, gsl_rng, r);
   return UINT2NUM(gsl_rng_max(r));
 }
 
-static VALUE rb_gsl_rng_min(VALUE obj, VALUE s)
+static VALUE rb_gsl_rng_min(VALUE obj)
 {
   gsl_rng *r = NULL;
   Data_Get_Struct(obj, gsl_rng, r);
   return UINT2NUM(gsl_rng_min(r));
 }
 
-static VALUE rb_gsl_rng_size(VALUE obj, VALUE s)
+static VALUE rb_gsl_rng_size(VALUE obj)
 {
   gsl_rng *r = NULL;
   Data_Get_Struct(obj, gsl_rng, r);
@@ -558,6 +558,7 @@ static VALUE rb_gsl_rng_memcpy(VALUE obj, VALUE dst, VALUE org)
 void Init_gsl_rng(VALUE module)
 {
   cgsl_rng = rb_define_class_under(module, "Rng", cGSL_Object);
+  rb_undef_alloc_func(cgsl_rng);
 
   rb_gsl_rng_define_const_type(module);
 

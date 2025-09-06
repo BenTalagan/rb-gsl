@@ -1701,12 +1701,15 @@ void FUNCTION(Init_gsl_poly,init)(VALUE module)
 #ifdef BASE_DOUBLE
   VALUE mgsl_poly_complex;
   cgsl_poly = rb_define_class_under(module, "Poly", cgsl_vector);
+  rb_undef_alloc_func(cgsl_poly);
   cgsl_poly_int = rb_define_class_under(cgsl_poly, "Int", cgsl_vector_int);
-
+  rb_undef_alloc_func(cgsl_poly_int);
   cgsl_poly_workspace = rb_define_class_under(cgsl_poly, "Workspace", cGSL_Object);
+  rb_undef_alloc_func(cgsl_poly_workspace);
   mgsl_poly_complex = rb_define_module_under(cgsl_poly, "Complex");
   cgsl_poly_complex_workspace = rb_define_class_under(mgsl_poly_complex,
                                                       "Workspace", cGSL_Object);
+  rb_undef_alloc_func(cgsl_poly_complex_workspace);
   rb_define_singleton_method(cgsl_poly_workspace, "alloc",
                              rb_gsl_poly_workspace_new, 1);
   rb_define_singleton_method(cgsl_poly_complex_workspace, "alloc",
@@ -1790,7 +1793,9 @@ void FUNCTION(Init_gsl_poly,init)(VALUE module)
   rb_define_singleton_method(cgsl_poly, "complex_eval", rb_gsl_poly_eval_singleton, 2);
   rb_define_method(cgsl_vector_complex, "eval", rb_gsl_complex_poly_complex_eval, 1);
   cgsl_poly_dd = rb_define_class_under(cgsl_poly, "DividedDifference", cgsl_poly);
+  rb_undef_alloc_func(cgsl_poly_dd);
   cgsl_poly_taylor = rb_define_class_under(cgsl_poly, "Taylor", cgsl_poly);
+  rb_undef_alloc_func(cgsl_poly_taylor);
   rb_define_singleton_method(cgsl_poly, "dd_init", rb_gsl_poly_dd_init, 2);
 
   rb_define_method(cgsl_poly_dd, "eval",rb_gsl_poly_dd_eval, 2);
@@ -1811,9 +1816,9 @@ void FUNCTION(Init_gsl_poly,init)(VALUE module)
                              FUNCTION(rb_gsl_poly,deconv2), 2);
 
   rb_define_method(GSL_TYPE(cgsl_poly), "reduce",
-                   FUNCTION(rb_gsl_poly,reduce), 1);
-  rb_define_method(GSL_TYPE(cgsl_poly), "deriv", FUNCTION(rb_gsl_poly,deriv), 1);
-  rb_define_method(GSL_TYPE(cgsl_poly), "integ", FUNCTION(rb_gsl_poly,integ), 1);
+                   FUNCTION(rb_gsl_poly,reduce), 0);
+  rb_define_method(GSL_TYPE(cgsl_poly), "deriv", FUNCTION(rb_gsl_poly,deriv), 0);
+  rb_define_method(GSL_TYPE(cgsl_poly), "integ", FUNCTION(rb_gsl_poly,integ), 0);
 
 /*****/
 

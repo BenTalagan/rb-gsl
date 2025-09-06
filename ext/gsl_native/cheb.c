@@ -122,7 +122,7 @@ static VALUE rb_gsl_cheb_eval(VALUE obj, VALUE xx)
         gsl_vector_set(vnew, i, gsl_cheb_eval(p, gsl_vector_get(v, i)));
       }
       return Data_Wrap_Struct(cgsl_vector, 0, gsl_vector_free, vnew);
-    } 
+    }
 #ifdef HAVE_NMATRIX_H
     else if (NM_IsNMatrix(xx)) {
       NM_DENSE_STORAGE *nm;
@@ -574,6 +574,7 @@ static VALUE rb_gsl_cheb_calc_integ(int argc, VALUE *argv, VALUE obj)
 void Init_gsl_cheb(VALUE module)
 {
   cgsl_cheb = rb_define_class_under(module, "Cheb", cGSL_Object);
+  rb_undef_alloc_func(cgsl_cheb);
   rb_define_singleton_method(cgsl_cheb, "new", rb_gsl_cheb_new, 1);
   rb_define_singleton_method(cgsl_cheb, "alloc", rb_gsl_cheb_new, 1);
   rb_define_method(cgsl_cheb, "order", rb_gsl_cheb_order, 0);

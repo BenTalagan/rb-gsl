@@ -881,6 +881,7 @@ static VALUE rb_gsl_complex_inspect(VALUE obj)
 void Init_gsl_complex(VALUE module)
 {
   cgsl_complex = rb_define_class_under(module, "Complex",  rb_cNumeric);
+  rb_undef_alloc_func(cgsl_complex);
   rb_define_singleton_method(cgsl_complex, "alloc", rb_gsl_complex_new, -1);
   rb_define_singleton_method(cgsl_complex, "rect", rb_gsl_complex_new, -1);
   rb_define_singleton_method(cgsl_complex, "[]", rb_gsl_complex_new, -1);

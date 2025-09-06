@@ -355,6 +355,8 @@ void Init_gsl_dht(VALUE module)
 {
   VALUE cgsl_dht;
   cgsl_dht = rb_define_class_under(module, "Dht", cGSL_Object);
+  rb_undef_alloc_func(cgsl_dht);
+
   rb_define_singleton_method(cgsl_dht, "alloc", rb_gsl_dht_alloc, -1);
   rb_define_method(cgsl_dht, "init", rb_gsl_dht_init, 2);
   rb_define_method(cgsl_dht, "apply", rb_gsl_dht_apply, -1);

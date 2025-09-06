@@ -83,9 +83,9 @@ static VALUE rb_gsl_spline2d_accel(VALUE self)
 }
 
 static VALUE rb_gsl_spline2d_evaluate(VALUE self, VALUE xx, VALUE yy,
-  double (*eval)(const gsl_spline2d *, double, double, gsl_interp_accel *, 
+  double (*eval)(const gsl_spline2d *, double, double, gsl_interp_accel *,
     gsl_interp_accel *))
-{ 
+{
   VALUE is_swapped = rb_cvar_get(CLASS_OF(self), rb_intern("@@swapped"));
   VALUE temp;
 
@@ -94,7 +94,7 @@ static VALUE rb_gsl_spline2d_evaluate(VALUE self, VALUE xx, VALUE yy,
     xx = yy;
     yy = temp;
   }
-  
+
   rb_gsl_spline2d *rgs = NULL;
   gsl_vector *vx = NULL, *vy = NULL, *vnew = NULL;
   gsl_matrix *mx = NULL, *my = NULL, *mnew = NULL;
@@ -143,7 +143,7 @@ static VALUE rb_gsl_spline2d_evaluate(VALUE self, VALUE xx, VALUE yy,
       vnew = gsl_vector_alloc(vx->size);
 
       for (i = 0; i < vx->size; i++) {
-        val = (*eval)(rgs->s, gsl_vector_get(vx, i), gsl_vector_get(vy, i), 
+        val = (*eval)(rgs->s, gsl_vector_get(vx, i), gsl_vector_get(vy, i),
           rgs->xacc, rgs->yacc);
         gsl_vector_set(vnew, i, val);
       }
@@ -171,7 +171,7 @@ static VALUE rb_gsl_spline2d_evaluate(VALUE self, VALUE xx, VALUE yy,
 }
 
 static VALUE rb_gsl_spline2d_eval(VALUE self, VALUE xx, VALUE yy)
-{ 
+{
   return rb_gsl_spline2d_evaluate(self, xx, yy, gsl_spline2d_eval);
 }
 
@@ -197,6 +197,7 @@ void Init_gsl_spline2d(VALUE module)
   VALUE cgsl_spline2d;
 
   cgsl_spline2d = rb_define_class_under(module, "Spline2d", cGSL_Object);
+  rb_undef_alloc_func(cgsl_spline2d);
 
   rb_define_singleton_method(cgsl_spline2d, "alloc", rb_gsl_spline2d_alloc, -1);
 

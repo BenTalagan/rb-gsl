@@ -781,8 +781,10 @@ static VALUE rb_gsl_histogram3d_div_scale(VALUE obj, VALUE hh)
 void Init_gsl_histogram3d(VALUE module)
 {
   cgsl_histogram3d = rb_define_class_under(module, "Histogram3d", cGSL_Object);
+  rb_undef_alloc_func(cgsl_histogram3d);
   cgsl_histogram3d_view = rb_define_class_under(cgsl_histogram3d, "View",
                                                 cgsl_histogram2d);
+  rb_undef_alloc_func(cgsl_histogram3d_view);
 
   /*  rb_define_singleton_method(cgsl_histogram3d, "new", rb_gsl_histogram3d_new, -1);*/
   rb_define_singleton_method(cgsl_histogram3d, "alloc",

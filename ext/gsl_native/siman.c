@@ -654,11 +654,17 @@ void Init_gsl_siman(VALUE module)
   mgsl_siman = rb_define_module_under(module, "Siman");
 
   cgsl_siman_Efunc = rb_define_class_under(mgsl_siman, "Efunc", cGSL_Object);
+  rb_undef_alloc_func(cgsl_siman_Efunc);
   cgsl_siman_step = rb_define_class_under(mgsl_siman, "Step", cGSL_Object);
+  rb_undef_alloc_func(cgsl_siman_step);
   cgsl_siman_metric = rb_define_class_under(mgsl_siman, "Metric", cGSL_Object);
+  rb_undef_alloc_func(cgsl_siman_metric);
   cgsl_siman_print = rb_define_class_under(mgsl_siman, "Print", cGSL_Object);
+  rb_undef_alloc_func(cgsl_siman_print);
   cgsl_siman_params = rb_define_class_under(mgsl_siman, "Params", cGSL_Object);
+  rb_undef_alloc_func(cgsl_siman_params);
   cgsl_siman_solver = rb_define_class_under(mgsl_siman, "Solver", cGSL_Object);
+  rb_undef_alloc_func(cgsl_siman_solver);
 
   /***** Efunc *****/
   rb_define_singleton_method(cgsl_siman_Efunc, "alloc", rb_gsl_siman_Efunc_new, -1);

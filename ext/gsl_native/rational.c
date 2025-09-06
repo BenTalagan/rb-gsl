@@ -440,6 +440,7 @@ static VALUE rb_gsl_poly_inverse(VALUE obj)
 void Init_gsl_rational(VALUE module)
 {
   cgsl_rational = rb_define_class_under(module, "Rational", cGSL_Object);
+  rb_undef_alloc_func(cgsl_rational);
   rb_define_singleton_method(cgsl_rational, "new", rb_gsl_rational_new, -1);
   rb_define_singleton_method(cgsl_rational, "[]", rb_gsl_rational_new, -1);
   rb_define_singleton_method(cgsl_rational, "alloc", rb_gsl_rational_new, -1);

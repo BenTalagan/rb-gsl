@@ -1870,6 +1870,7 @@ void Init_gsl_ran(VALUE module)
   /*****/
 
   cgsl_ran_discrete = rb_define_class_under(mgsl_ran, "Discrete", cGSL_Object);
+  rb_undef_alloc_func(cgsl_ran_discrete);
   rb_define_singleton_method(cgsl_ran_discrete, "alloc", rb_gsl_ran_discrete_new, 1);
   rb_define_singleton_method(cgsl_ran_discrete, "preproc", rb_gsl_ran_discrete_new, 1);
   rb_define_method(cgsl_rng, "discrete", rb_gsl_ran_discrete, 1);

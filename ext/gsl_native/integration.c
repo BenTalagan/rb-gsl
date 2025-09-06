@@ -1062,6 +1062,7 @@ void Init_gsl_integration(VALUE module)
 
   cgsl_integration_qaws_table = rb_define_class_under(mgsl_integ, "QAWS_Table",
                                                       cGSL_Object);
+  rb_undef_alloc_func(cgsl_integration_qaws_table);
   rb_define_singleton_method(cgsl_integration_qaws_table, "alloc",
                              rb_gsl_integration_qaws_table_alloc, -1);
   /*  rb_define_singleton_method(cgsl_integration_qaws_table, "new",
@@ -1078,6 +1079,7 @@ void Init_gsl_integration(VALUE module)
 
   cgsl_integration_qawo_table = rb_define_class_under(mgsl_integ, "QAWO_Table",
                                                       cGSL_Object);
+  rb_undef_alloc_func(cgsl_integration_qawo_table);
   rb_define_singleton_method(cgsl_integration_qawo_table, "alloc",
                              rb_gsl_integration_qawo_table_alloc, -1);
   /*  rb_define_singleton_method(cgsl_integration_qawo_table, "new",
@@ -1097,6 +1099,7 @@ void Init_gsl_integration(VALUE module)
 
   cgsl_integration_workspace = rb_define_class_under(mgsl_integ,
                                                      "Workspace", cGSL_Object);
+  rb_undef_alloc_func(cgsl_integration_workspace);
 
   /*  rb_define_singleton_method(cgsl_integration_workspace, "new",
       rb_gsl_integration_workspace_alloc, -1);*/
@@ -1138,6 +1141,7 @@ void Init_gsl_integration(VALUE module)
   rb_define_module_function(mgsl_integ, "qawf", rb_gsl_integration_qawf, -1);
 
   cgsl_integration_glfixed_table = rb_define_class_under(mgsl_integ, "Glfixed_table", cGSL_Object);
+  rb_undef_alloc_func(cgsl_integration_glfixed_table);
   rb_define_singleton_method(cgsl_integration_glfixed_table, "alloc",
                              rb_gsl_integration_glfixed_table_alloc, 1);
   rb_define_method(cgsl_function, "glfixed", rb_gsl_integration_glfixed, 3);
@@ -1151,4 +1155,3 @@ void Init_gsl_integration(VALUE module)
 #ifdef CHECK_WORKSPACE
 #undef CHECK_WORKSPACE
 #endif
-

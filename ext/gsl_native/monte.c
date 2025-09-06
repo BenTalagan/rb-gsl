@@ -844,15 +844,19 @@ void Init_gsl_monte(VALUE module)
   rb_define_const(mgsl_monte, "VEGAS", INT2FIX(GSL_MONTE_VEGAS_STATE));
 
   cgsl_monte_function = rb_define_class_under(mgsl_monte, "Function", cGSL_Object);
+  rb_undef_alloc_func(cgsl_monte_function);
   cgsl_monte_plain = rb_define_class_under(mgsl_monte, "Plain", cGSL_Object);
+  rb_undef_alloc_func(cgsl_monte_plain);
   cgsl_monte_miser = rb_define_class_under(mgsl_monte, "Miser", cGSL_Object);
+  rb_undef_alloc_func(cgsl_monte_miser);
   cgsl_monte_vegas = rb_define_class_under(mgsl_monte, "Vegas", cGSL_Object);
+  rb_undef_alloc_func(cgsl_monte_vegas);
 
   rb_define_singleton_method(cgsl_monte_function, "new", rb_gsl_monte_function_new, -1);
   rb_define_singleton_method(cgsl_monte_function, "alloc", rb_gsl_monte_function_new, -1);
 
   rb_define_method(cgsl_monte_function, "proc", rb_gsl_monte_function_proc, 0);
-  rb_define_method(cgsl_monte_function, "eval", rb_gsl_monte_function_eval, 0);
+  rb_define_method(cgsl_monte_function, "eval", rb_gsl_monte_function_eval, 1);
   rb_define_alias(cgsl_monte_function, "call", "eval");
   rb_define_method(cgsl_monte_function, "params", rb_gsl_monte_function_params, 0);
   rb_define_method(cgsl_monte_function, "set", rb_gsl_monte_function_set_f, -1);
@@ -929,7 +933,9 @@ void Init_gsl_monte(VALUE module)
                    rb_gsl_monte_vegas_integrate, -1);
 
   cgsl_monte_miser_params = rb_define_class_under(cgsl_monte_miser, "Params", cGSL_Object);
+  rb_undef_alloc_func(cgsl_monte_miser_params);
   cgsl_monte_vegas_params = rb_define_class_under(cgsl_monte_vegas, "Params", cGSL_Object);
+  rb_undef_alloc_func(cgsl_monte_vegas_params);
 
   rb_define_method(cgsl_monte_miser, "params_get", rb_gsl_monte_miser_params_get, 0);
   rb_define_method(cgsl_monte_miser, "params_set", rb_gsl_monte_miser_params_set, 1);

@@ -127,9 +127,10 @@ void Init_gsl_sum(VALUE module)
   mgsl_sum = rb_define_module_under(module, "Sum");
   cgsl_sum_levin_u = rb_define_class_under(mgsl_sum,
                                            "Levin_u", cGSL_Object);
+  rb_undef_alloc_func(cgsl_sum_levin_u);
   cgsl_sum_levin_utrunc = rb_define_class_under(mgsl_sum,
                                                 "Levin_utrunc", cGSL_Object);
-
+  rb_undef_alloc_func(cgsl_sum_levin_utrunc);
   rb_define_singleton_method(cgsl_sum_levin_u, "new", rb_gsl_sum_levin_u_new, 1);
   rb_define_singleton_method(cgsl_sum_levin_u, "alloc", rb_gsl_sum_levin_u_new, 1);
   rb_define_singleton_method(cgsl_sum_levin_utrunc, "new",

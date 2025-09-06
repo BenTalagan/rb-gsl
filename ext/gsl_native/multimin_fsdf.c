@@ -137,7 +137,9 @@ void Init_multimin_fsdf(VALUE module)
   VALUE cmin;
 
   cmin = rb_define_class_under(module, "FsdfMinimizer",  cGSL_Object);
+  rb_undef_alloc_func(cmin);
   cfsdf = rb_define_class_under(module, "Function_fsdf", cgsl_multimin_function_fdf);
+  rb_undef_alloc_func(cfsdf);
 
   rb_define_singleton_method(cmin, "alloc", rb_gsl_fsdfminimizer_alloc, 2);
   rb_define_method(cmin, "set", rb_gsl_fsdfminimizer_set, 3);

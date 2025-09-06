@@ -73,13 +73,18 @@ static void Init_gsl_dirac_common(VALUE module)
 
   cgsl_matrix_complex_const = rb_define_class_under(module, "Const",
                                                     cgsl_matrix_complex);
+  rb_undef_alloc_func(cgsl_matrix_complex_const);
   rb_define_method(cgsl_matrix_complex_const, "set", rb_dirac_refuse_set, -1);
 
   cPauli = rb_define_class_under(module, "Pauli", cgsl_matrix_complex_const);
+  rb_undef_alloc_func(cPauli);
   cAlpha = rb_define_class_under(module, "Alpha", cgsl_matrix_complex_const);
+  rb_undef_alloc_func(cAlpha);
   /*  cBeta = rb_define_class_under(module, "BetaMatrix", cgsl_matrix_complex_const);*/
   cGamma = rb_define_class_under(module, "Gamma", cgsl_matrix_complex_const);
+  rb_undef_alloc_func(cGamma);
   cLambda = rb_define_class_under(module, "Lambda", cgsl_matrix_complex_const);
+  rb_undef_alloc_func(cLambda);
 }
 
 

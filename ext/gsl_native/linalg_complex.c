@@ -615,6 +615,7 @@ void Init_gsl_linalg_complex(VALUE module)
 
   cgsl_matrix_complex_LU = rb_define_class_under(mgsl_linalg_complex_LU,
                                                  "LUMatrix", cgsl_matrix_complex);
+  rb_undef_alloc_func(cgsl_matrix_complex_LU);
 
   rb_define_singleton_method(mgsl_linalg_complex, "LU_decomp!",
                              rb_gsl_linalg_complex_LU_decomp, -1);
@@ -692,6 +693,8 @@ void Init_gsl_linalg_complex(VALUE module)
 
   mgsl_linalg_complex_chol = rb_define_module_under(mgsl_linalg_complex, "Cholesky");
   cgsl_matrix_complex_C = rb_define_class_under(mgsl_linalg_complex_chol, "CholeskyMatrix", cgsl_matrix_complex);
+  rb_undef_alloc_func(cgsl_matrix_complex_C);
+
   rb_define_singleton_method(mgsl_linalg_complex_chol, "decomp", rb_gsl_linalg_cholesky_decomp, -1);
   rb_define_method(cgsl_matrix_complex, "cholesky_decomp", rb_gsl_linalg_cholesky_decomp, -1);
   rb_define_singleton_method(mgsl_linalg_complex_chol, "solve", rb_gsl_linalg_cholesky_solve, -1);

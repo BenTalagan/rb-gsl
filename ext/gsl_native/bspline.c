@@ -47,15 +47,15 @@ static VALUE rb_gsl_bspline_knots(VALUE obj, VALUE b)
     nm_bpts = NM_STORAGE_DENSE(b);
     v = gsl_vector_view_array((double*) nm_bpts->elements, NM_DENSE_COUNT(b));
     gsl_bspline_knots(&v.vector, w);
-    return Data_Wrap_Struct(cgsl_vector_view_ro, 0, NULL, w->knots);    
+    return Data_Wrap_Struct(cgsl_vector_view_ro, 0, NULL, w->knots);
   }
 #endif
-  
+
   gsl_vector *bpts;
   CHECK_VECTOR(b);
   Data_Get_Struct(b, gsl_vector, bpts);
   gsl_bspline_knots(bpts, w);
-  return Data_Wrap_Struct(cgsl_vector_view_ro, 0, NULL, w->knots);    
+  return Data_Wrap_Struct(cgsl_vector_view_ro, 0, NULL, w->knots);
 }
 static VALUE rb_gsl_bspline_knots_uniform(int argc, VALUE *argv, VALUE obj)
 {
@@ -120,6 +120,7 @@ static VALUE rb_gsl_bspline_greville_abscissa(VALUE obj, VALUE i)
 void Init_bspline(VALUE module)
 {
   cBSWS = rb_define_class_under(module, "BSpline", cGSL_Object);
+  rb_undef_alloc_func(cBSWS);
 
   rb_define_singleton_method(cBSWS, "alloc", rb_gsl_bspline_alloc, 2);
 
